@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #273467;
+    }
+
+    .module {
+      background: white;
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+
+    .module-header {
+      padding: 20px;
+      background: #273467;
+      color: white;
+      font-weight: 600;
+    }
+
+    .module-content {
+      display: none;
+      padding: 25px;
+    }
+
+    .object-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+
+    /* ROADMAP */
+
+    /* ===== ROADMAP BASE ===== */
+.roadmap {
+  display: grid;
+  gap: 15px;
+  margin-top: 20px;
+  align-items: start;
+}
+
+/* Module 1: 4 cột */
+.roadmap.module1 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Module 2,3: 3 cột */
+.roadmap:not(.module1) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ===== STEP CARD ===== */
+.roadmap-step {
+  background: #eef2ff;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  height: fit-content; /* 🔥 FIX GIÃN */
+}
+
+.roadmap-step:hover {
+  background: #e0e7ff;
+  transform: translateY(-4px);
+}
+
+/* ===== TITLE ===== */
+.step-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ===== CONTENT (ANIMATION MƯỢT CHUẨN) ===== */
+.step-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.step-content.open {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .roadmap,
+  .roadmap.module1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .roadmap,
+  .roadmap.module1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+    /* PRICE */
+    .price-box {
+      background: #f9fbff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .discount {
+      color: #e63946;
+      font-weight: 600;
+    }
+
+    /* COMBO CARD */
+    .combo {
+      margin-top: 40px;
+    }
+
+    .combo h2 {
+      text-align: center;
+      color: #273467;
+    }
+
+    .combo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .combo-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .combo-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .combo-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .combo-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #273467;
+    }
+
+    .combo-discount {
+      color: #e63946;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #273467;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url("https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/Sale 2.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+/* SIGNATURE */
+@font-face {
+  font-family: 'Amsterdam';
+  src: 
+    url('https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/Amsterdam.woff2') format('woff2'),
+    url('https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/Amsterdam.woff') format('woff');
+}
+
+.signature {
+  font-family: 'Amsterdam';
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.hero-title {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.hero::before {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.services h2 {
+  color: #273467;
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.service-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: 0.25s;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.about {
+  padding: 80px 20px;
+  background: #f5f7fb;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.about-content h2 {
+  color: #273467;
+}
+
+.about-content h3 {
+  margin-top: 10px;
+}
+
+.about-content p {
+  line-height: 1.8; /* 👈 tăng khoảng cách giữa dòng */
+}
+
+.about-content br {
+  display: block;
+  margin-bottom: 8px; /* 👈 tạo khoảng cách giữa các bullet */
+}
+
+.location {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.location-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: auto;
+  align-items: center;
+}
+
+.location-content h2 {
+  color: #273467;
+  margin-bottom: 20px;
+}
+
+.location-content p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.location-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feedback {
+  padding: 80px 20px;
+  background: #f5f7fb;
+  text-align: center;
+}
+
+.feedback h2 {
+  color: #273467;
+  margin-bottom: 40px;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.feedback-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+}
+
+.popup-item {
+  background: #f5f7ff;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  border-left: 4px solid #273467;
+}
+
+.popup-body {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.popup-content {
+  background: white;
+  width: 95%;
+  max-width: 650px; /* 👈 to hơn */
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 30px; /* 👈 thoáng hơn */
+  border-radius: 16px;
+  box-shadow: 
+    0 30px 80px rgba(0,0,0,0.35),
+    0 10px 30px rgba(0,0,0,0.2);
+  transform: scale(0.98);
+  animation: popupFade 0.25s ease;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popup-header {
+  font-size: 22px;
+  font-weight: 700;
+  color: #273467;
+
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eef2ff;
+  margin-bottom: 15px;
+}
+
+.popup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-list br {
+  display: none;
+}
+
+.popup {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px); /* 👈 cực ăn tiền */
+}
+
+.close {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+  transition: 0.2s;
+}
+
+.close:hover {
+  color: #000;
+}
+
+#popup-text,
+#popup-text * {
+  font-size: 18px !important;
+  line-height: 1.7;
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    
+    <div class="signature">Dinh Truong</div>
+
+    <h1 class="hero-title">
+      TỪ "GÀ MỜ" TRỞ THÀNH "KIỆN TƯỚNG" BÁN HÀNG
+    </h1>
+
+  </div>
+
+</div>
+
+<div class="services">
+
+  <h2>DỊCH VỤ CỦA TÔI</h2>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="icon">💼</div>
+      <h3>KỸ NĂNG BÁN HÀNG & TƯ VẤN CHUYÊN SÂU</h3>
+      <p>Đột phá doanh thu dựa trên sự tử tế và thấu hiểu</p>
+    </div>
+
+    <div class="service-card">
+      <div class="icon">👥</div>
+      <h3>ĐÀO TẠO QUẢN LÝ & LÃNH ĐẠO</h3>
+      <p>Nâng tầm tư duy lãnh đạo và kỹ năng quản trị đội nhóm</p>
+    </div>
+
+    <div class="service-card">
+      <div class="icon">💡</div>
+      <h3>TƯ VẤN GIẢI PHÁP & VẬN HÀNH</h3>
+      <p>Thiết lập chiến lược và bộ máy vận hành tinh gọn, tạo dựng nền móng phát triển bền vững</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="about">
+
+  <div class="about-container">
+
+    <div class="about-image">
+      <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/about.jpg" alt="profile">
+    </div>
+
+    <div class="about-content">
+  <h2>VỀ TÔI</h2>
+
+  <h3>Đinh Trường</h3>
+
+  <div class="experience">
+    <div class="exp-title">Kinh nghiệm làm việc</div>
+
+    <ul>
+      <li>Hơn 12 năm kinh nghiệm trong lĩnh vực fitness: từ PT, quản lý, CEO, đến kinh doanh chuỗi phòng tập</li>
+      <li>Founder hệ thống Ladysfit Việt Nam với 30+ phòng tập trên toàn quốc</li>
+      <li>Founder học viện đào tạo PT thực chiến VPTA - đào tạo hơn 1000 PT trên khắp Việt Nam</li>
+      <li>Tác giả cuốn sách "Bán mà không Bán - Nghệ thuật bán hàng dành riêng cho PT"</li>
+      <li>Đào tạo +300 quản lý, chủ phòng gym, tư vấn +20 hệ thống phòng tập trên toàn quốc</li>
+      <li>Có kinh nghiệm tư vấn vận hành tinh gọn hệ thống phòng tập, đóng gói chuyển đổi sang mô hình nhượng quyền</li>
+    </ul>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+
+<h1>NỘI DUNG KHÓA HỌC</h1>
+
+<!-- MODULE 1 -->
+<div class="module" onclick="toggleModule(this)">
+<div class="module-header">Course 1: Kỹ năng bán hàng xuất sắc</div>
+<div class="module-content">
+
+<div class="object-box">
+<b>Đối tượng:</b><br>
+- Những học viên đang làm PT/Sale tại các tổ hợp fitness, fitness private, studio, freelancer. <br> 
+- Những bạn đang làm quản lý, muốn hệ thống hóa chương trình đào tạo kỹ năng bán hàng để "nhân bản" cho phòng tập.
+</div>
+
+<div class="roadmap module1">
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 1</div>
+<div class="step-content">
+Buổi 1 + 2: Quản trị mục tiêu & Kiến tạo sự nghiệp <br>
+Buổi 3: Tư duy để sống sót và phát triển trong thời kỳ fitness "hỗn loạn" <br>
+Buổi 4: Hiểu cách não bộ ra quyết định mua hàng <br>
+Buổi 5 + 6: Ứng dụng các hiệu ứng tâm lý trong bán hàng <br>
+Buổi 7: Những yếu tố ảnh hưởng tới khả năng quyết định mua hàng <br>
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 2</div>
+<div class="step-content">
+Buổi 8: Kỹ năng Lắng nghe và thấu hiểu khách hàng <br>
+Buổi 9: Kỹ năng đặt câu hỏi "khám phá nhu cầu" của KH<br>
+Buổi 10: Kỹ năng "điều khiển" giọng nói để tư vấn như một chuyên gia<br>
+Buổi 11: Kỹ năng diễn giải và truyền đạt rõ ràng <br>
+Buổi 12: Kỹ năng xây dựng mối quan hệ và tạo thiện cảm<br>
+Buổi 13: Kỹ năng phản hồi, góp ý & xử lý tình huống khó<br>
+Buổi 14: Kỹ năng giao tiếp phi ngôn ngữ<br>
+Buổi 15: Kỹ năng quản lý thời gian hiệu quả<br>
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 3</div>
+<div class="step-content">
+Buổi 16: Xác định chân dung KH mục tiêu và thiết lập USP<br>
+Buổi 17: Kỹ năng tiếp cận khách hàng trên Sàn tập <br>
+Buổi 18: Thấu hiểu "Hành vi" khách hàng để "Telesale" hiệu quả<br>
+Buổi 19 + 20: Kỹ thuật tư vấn bán gói tập lớn qua điện thoại- P1<br>
+Buổi 21 + 22: Kỹ năng kể chuyện trong bán hàng<br>
+Buổi 23: Kỹ năng phân tích và tư vấn Inbody<br>
+Buổi 24 + 25: Kỹ năng thuyết phục khách hàng, bán gói tập giá trị cao<br>
+Buổi 26: Kỹ năng thuyết trình tư vấn giải pháp tập luyện cho khách hàng<br>
+</div>
+</div>
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 4</div>
+<div class="step-content">
+Buổi 27 + 28 + 29: Kỹ năng chốt Sale và xử lý từ chối<br>
+Buổi 30: Kỹ năng xây dựng và phát triển mối quan hệ với khách hàng<br>
+Buổi 31: Giảm tỷ lệ Churn Rate & tăng  Customer Lifetime Value<br>
+Buổi 32: Chiến lược "Renew-Tái ký" hiệu quả cho PT<br>
+Buổi 33: Kỹ năng khai thác nguồn "khách hàng giới thiệu" từ KH cũ<br>
+</div>
+</div>
+</div>
+
+<div class="price-box">
+<p><b>Ngày khai giảng:</b> Thứ 2, ngày 04/05/2026</p>
+<p><b>Số lượng học viên:</b> 10 người</p>
+<p><b>Học phí:</b> 50.000.000đ</p>
+<p class="discount">Ưu đãi (dành cho 3 học viên đăng ký sớm nhất): 35.000.000đ</p>
+</div>
+
+</div>
+</div>
+
+<!-- MODULE 2 -->
+<div class="module" onclick="toggleModule(this)">
+<div class="module-header">Course 2: Phát triển kỹ năng Lãnh đạo trong thời kỳ Fitness "hỗn loạn"</div>
+<div class="module-content">
+
+<div class="object-box">
+<b>Đối tượng:</b><br>
+- Những PT/Sale muốn thăng tiến phát triển lên vị trí quản lý hoặc muốn khởi nghiệp kinh doanh phòng tập.<br>
+- Những bạn đang làm quản lý, muốn phát triển kỹ năng lãnh đạo để dẫn dắt đội nhóm vượt qua khủng hoảng và phát triển.<br>
+- Những Quản lý/Giám đốc/Chủ phòng tập muốn hệ thống hóa chương trình đào tạo dành cho Lãnh đạo để "nhân bản" cho đội ngũ quản lý của hệ thống  phòng tập.
+</div>
+
+<div class="roadmap">
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 1</div>
+<div class="step-content">
+Buổi 34: Hướng dẫn xây dựng quy trình bán hàng cho PT <br>
+Buổi 35: Hướng dẫn lập kế hoạch bán hàng cho PT <br>
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 2</div>
+<div class="step-content">
+Buổi 36: Phát triển kỹ năng lãnh đạo <br>
+Buổi 37: Chiến lược Lãnh đạo bản thân <br>
+Buổi 38: Nâng tầm lãnh đạo <br>
+Buổi 39: Lãnh đạo đội nhóm và xây dựng văn hóa hiệu quả <br>
+Buổi 40: Xây dựng và thức đẩy Văn hóa Cống hiến - Gắn kết trong tổ chức <br>
+Buổi 41 + 43: Kỹ Năng Giải Quyết Vấn Đề <br>
+Buổi 42: Xây dựng Văn hóa giải quyết vấn đề trong tổ chức <br>
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Module 3</div>
+<div class="step-content">
+Buổi 43 + 44: Kỹ năng tạo Thúc đẩy- tạo động lực cho nhân sự <br>
+Buổi 45 + 46: Kỹ năng Hóa giải xung đột dành cho Lãnh đạo <br>
+Buổi 47: Lãnh đạo TỐT - Lãnh đạo TỒI <br>
+Buổi 48 + 49: Phát triển Kỹ năng Lãnh đạo theo tình huống <br>
+</div>
+</div>
+</div>
+
+<div class="price-box">
+<p><b>Ngày khai giảng:</b> Thứ 2, ngày 06/07/2026</p>
+<p><b>Số lượng học viên:</b> 10 người</p>
+<p><b>Học phí:</b> 30.000.000đ</p>
+<p class="discount">Ưu đãi (dành cho 3 học viên đăng ký sớm nhất): 25.000.000đ</p>
+</div>
+
+</div>
+</div>
+
+<!-- MODULE 3 -->
+<div class="module" onclick="toggleModule(this)">
+<div class="module-header">Course 3: Tăng trưởng doanh thu bền vững, từ chiến lược đến thực thi</div>
+<div class="module-content">
+
+<div class="object-box">
+<b>Đối tượng:</b><br>
+- Những PT/Sale muốn thăng tiến phát triển lên vị trí quản lý hoặc muốn khởi nghiệp kinh doanh phòng tập.<br>
+- Những bạn đang làm quản lý, muốn phát triển kỹ năng lãnh đạo để dẫn dắt đội nhóm vượt qua khủng hoảng và phát triển.<br>
+- Những Quản lý/Giám đốc/Chủ phòng tập muốn hệ thống hóa chương trình đào tạo dành cho Lãnh đạo để "nhân bản" cho đội ngũ quản lý của hệ thống  phòng tập.
+</div>
+
+<div class="roadmap">
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Giai đoạn 1</div>
+<div class="step-content">
+Buổi 50: Quản trị sự thay đổi <br>
+Buổi 51: Xác định Tầm nhìn - Sứ mệnh - Giá trị cốt lõi - Mô hình kinh doanh <br>
+Buổi 52: Chiến lược và tầm quan trọng của chiến lược <br>
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Giai đoạn 2</div>
+<div class="step-content">
+Buổi 53: Phân tích môi trường bên trong doanh nghiệp <br>
+Buổi 54: Phân tích môi trường bên ngoài doanh nghiệp <br>
+Buổi 55: Hướng dẫn kết hợp chiến lược <br>
+Buổi 56: Lựa chọn chiến lược và Thiết lập mục tiêu chiến lược <br>  
+</div>
+</div>
+
+<div class="roadmap-step" onclick="toggleStep(event,this)">
+<div class="step-title">Giai đoạn 3</div>
+<div class="step-content">
+Buổi 57: Hướng dẫn xây dựng Master Plan <br>
+Buổi 58: Hướng dẫn xây dựng Action Plan <br>
+Buổi 59: Hướng dẫn xây dựng Detail Plan <br>
+</div>
+</div>
+</div>
+
+<div class="price-box">
+<p><b>Ngày khai giảng:</b> Thứ 2, ngày 03/08/2026</p>
+<p><b>Số lượng học viên:</b> 10 người</p>
+<p><b>Học phí:</b> 20.000.000đ</p>
+<p class="discount">Ưu đãi (dành cho 3 học viên đăng ký sớm nhất): 15.000.000đ</p>
+</div>
+
+</div>
+</div>
+
+<!-- COMBO -->
+<div class="combo">
+<h2>ƯU ĐÃI COMBO</h2>
+
+<div class="combo-grid">
+
+<div class="combo-card">
+<div class="combo-title">Module 2 + 3</div>
+<div class="combo-price">40.000.000đ</div>
+<div class="combo-discount">Tiết kiệm 10.000.000đ</div>
+</div>
+
+<div class="combo-card">
+<div class="combo-title">Module 1 + 2</div>
+<div class="combo-price">60.000.000đ</div>
+<div class="combo-discount">Tiết kiệm 20.000.000đ</div>
+</div>
+
+<div class="combo-card">
+<div class="combo-title">Full 3 Module</div>
+<div class="combo-price">70.000.000đ</div>
+<div class="combo-discount">Tiết kiệm 30.000.000đ</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="feedback">
+
+  <h2>HỌC VIÊN NÓI GÌ SAU KHÓA HỌC</h2>
+
+  <div class="feedback-grid">
+
+    <!-- 1 -->
+    <div class="feedback-card">
+      <p>“Tôi từ một người không biết gì, nay đã có thể tự tin hit Target mỗi tháng nhờ thầy Trường.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/Phuoc.png">
+        <div><b>Mr. Cao Phước</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="feedback-card">
+      <p>“Doanh thu của tôi đã tăng gấp đôi chỉ sau 1 tháng áp dụng kiến thức trong khóa học.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/hien.jpg">
+        <div><b>Ms. Hiền Nguyễn</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="feedback-card">
+      <p>“Nhờ khóa học này, tôi đã hiểu rõ tư duy bán hàng và không còn sợ khách hàng từ chối nữa.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/maily.jpg">
+        <div><b>Mrs. Mai Ly</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="feedback-card">
+      <p>“Nhờ kiến thức trong khóa học của thầy Trường, tôi đã giúp doanh số của toàn độ tăng 150%.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/ngan.png">
+        <div><b>Ms. Lưu Ngân</b><br>Fitness Manager</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="feedback-card">
+      <p>“Nhờ thầy Trường, tôi đã biết cách phân tích nhu cầu của khách hàng và chốt sale tự tin hơn.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/trung.jpg">
+        <div><b>Mr. Trung Trung</b><br>Master Trainer</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="feedback-card">
+      <p>“Tôi bước chân vào ngành Fitness như một người mới không biết gì, sau 1 năm tôi đã trở thành FM quản lý 3 phòng tập.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/mai.jpg">
+        <div><b>Mrs. Mai Mei</b><br>Fitness Manager</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="feedback-card">
+      <p>“Giá trị nhất của khóa học này chính là ở mindset và tư duy bán hàng.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/ngocduy.jpg">
+        <div><b>Mr. Ngọc Duy</b><br>Fitness Manager</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="feedback-card">
+      <p>“Nhờ nội dung trong khóa học này, tôi đã trở nên tự tin hơn bao giờ hết mỗi khi tiếp khách hàng.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/nguyen.jpg">
+        <div><b>Mr. Cao Nguyên</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="feedback-card">
+      <p>“Nội dung trong khóa học vô cùng thực tế, có thể áp dụng được ngay vào công việc.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/nhan.jpg">
+        <div><b>Ms. Thanh Nhàn</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="feedback-card">
+      <p>“Tôi là FM của 1 phòng tập với doanh thu lẹt đẹt trong suốt 2 năm, nhờ khóa học này mà tôi đã biết mùi hit Targer định kỳ.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/taihip.jpg">
+        <div><b>Mr. Danh Tài</b><br>Fitness Manager</div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="feedback-card">
+      <p>“Khóa học này không chỉ về bán hàng, mà còn giúp tôi thay đổi tư duy hoàn toàn.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/thanhtung.jpg">
+        <div><b>Mr. Thanh Tùng</b><br>Personal Trainer</div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="feedback-card">
+      <p>“Tôi đã từng học qua rất nhiều khóa của thầy Trường rồi nhưng mà vẫn còn thấy wow vì độ thực tiễn và lượng kiến thức khổng lồ trong khóa này.”</p>
+      <div class="user">
+        <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/thao.jpg">
+        <div><b>Mrs. Phương Thảo</b><br>Fitness Manager</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="location">
+
+  <div class="location-container">
+
+    <!-- TEXT -->
+    <div class="location-content">
+      <h2>ĐỊA ĐIỂM & THỜI GIAN HỌC</h2>
+
+      <p><b>Địa điểm:</b><br>
+      1. Tầng 5, số 8, Ngõ 69 Trần Duy Hưng, Hà Nội <br>
+      2. Hình thức học: Offline/Online qua Zoom
+      </p>
+
+      <p><b>Thời gian học:</b><br>
+      - Buổi sáng: 9h00-11h30</p>
+
+      <p><b>Lịch học:</b><br>
+      - Một tuần học 4 buổi vào sáng thứ 2-4-6 và Chủ Nhật hàng tuần </p>
+
+      <p> <b> THÔNG TIN LIÊN HỆ: </b><br>
+      - Mr Đình Trường - 0942.523.123
+      </p>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="location-image">
+      <img src="https://raw.githubusercontent.com/ladysfitmastertrainer/font/main/vanphong.jpg" alt="Địa điểm học">
+    </div>
+
+  </div>
+
+</div>
+
+<a class="sticky-cta" href="https://h5r05zsyho5.sg.larksuite.com/share/base/form/shrlgjgNpUTvaUdmTjZhTCSQLbd">ĐĂNG KÝ NGAY</a>
+
+<script>
+function toggleModule(el) {
+  const content = el.querySelector(".module-content");
+  content.style.display = content.style.display === "block" ? "none" : "block";
+}
+
+function toggleStep(event, el) {
+  event.stopPropagation();
+
+  const raw = el.querySelector(".step-content").innerHTML;
+
+  const lines = raw.split("<br>").filter(l => l.trim() !== "");
+  const formatted = lines.map(line => `
+    <div class="popup-item">${line}</div>
+  `).join("");
+
+  const titleEl = el.querySelector(".step-title");
+  const title = titleEl ? titleEl.innerText : "";
+
+  document.getElementById("popup-text").innerHTML = `
+    <div class="popup-body">
+      <div class="popup-header">${title}</div>
+      <div class="popup-list">${formatted}</div>
+    </div>
+  `;
+
+  document.getElementById("popup").style.display = "flex";
+  document.getElementById("popup").addEventListener("click", function(e) {
+  if (e.target === this) {
+    this.style.display = "none";
+  }
+});
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+function expand(el) {
+  el.classList.add("open");
+  el.style.display = "block";
+
+  const height = el.scrollHeight + "px";
+  el.style.height = "0px";
+
+  requestAnimationFrame(() => {
+    el.style.transition = "height 0.35s ease";
+    el.style.height = height;
+  });
+
+  el.addEventListener("transitionend", function handler() {
+    el.style.height = "auto";
+    el.removeEventListener("transitionend", handler);
+  });
+}
+
+function collapse(el) {
+  const height = el.scrollHeight + "px";
+  el.style.height = height;
+
+  requestAnimationFrame(() => {
+    el.style.transition = "height 0.3s ease";
+    el.style.height = "0px";
+  });
+
+  el.addEventListener("transitionend", function handler() {
+    el.style.display = "none";
+    el.classList.remove("open");
+    el.removeEventListener("transitionend", handler);
+  });
+}
+</script>
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">×</span>
+    <div id="popup-text"></div>
+  </div>
+</div>
+</body>
+</html>
